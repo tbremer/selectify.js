@@ -1,7 +1,6 @@
+![download-1.901kb](http://img.shields.io/badge/Download-1.901kb-136ad5.svg?style=flat)
 Selectify.js
 ============
-![download-1.901kb](http://img.shields.io/badge/Download-1.901kb-136ad5.svg?style=flat)
-
 A simple jQuery plugin that creates HTML5, CSS3 & Browser (down it IE8) compliant selectboxes. Crafted for a need of simple reusable development processes by [tbremer @ MISE.io](//mise.io). Feel free to download [here](https://github.com/tbremer/selectify.js/archive/master.zip), or checkout the [demo](//mise.io/selectify.js)
 
 How to use
@@ -17,7 +16,7 @@ How to use
 </select>
 ```
 
-###jQuery
+###jquery
 ```jquery
 $('#selectify').selectify();
 ```
