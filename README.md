@@ -12,7 +12,7 @@ How to use
     <option value="beautiful">Beautiful</option>
     <option value="compliant">Compliant</option>
     <option value="selectboxes">Selectboxes</option>
-    <option value="Selectify.js" selected>Selectify.js</option>
+    <option value="selectify" selected>Selectify.js</option>
 </select>
 ```
 
@@ -21,9 +21,19 @@ How to use
 $('#selectify').selectify();
 ```
 
+Events
+-----------
+Selectify will trigger certain events, the same as a regular `<select>` DOM Node would. Focus, Blur, Change. You can listen on those events the same way you would on any other form element in jQuery, however they are namespaced to avoid interfering with your normal work flow, that namespace is `selectify.event`:
+```javascript
+$('#selectify').on('selectify.focus', [data], [function]);
+```
+```javascript
+$('#selectify').on('selectify.blur', [data], [function]);
+```
+```javascript
+$('#selectify').on('selectify.change', [data], [function]);
+```
+
 Suggested Styling
 -----------
 Included in this repo is a compiled stylesheet, and the expanded SASS version, it is mearly a suggestion, and what I like the best. Feel free to modify it, but it should look fine on all sites as is.
-
-###Options
-None. It's simple, effective and stable. You don't need options.

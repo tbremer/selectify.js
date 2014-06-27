@@ -6,32 +6,30 @@
   user-select: none; }
 
 .selectify-select {
-  border: 1px solid; }
+  background-color: #fff;
+  border: 1px solid;
+  list-style: none; }
 
-.selectify-option {
+.selectify-selected, .selectify-option {
   position: relative;
-  padding: 2px 6px; }
-  .selectify-option:hover {
-    background-color: #c2c2c2;
-    cursor: pointer; }
-  .selectify-option.hidden {
+  padding: 2px 6px;
+  display: block; }
+  .selectify-selected.hidden, .selectify-option.hidden {
     display: none; }
 
-.selectify-selected {
-  position: relative;
-  display: block;
-  padding: 2px 6px; }
-  .selectify-selected.hidden {
-    display: none; }
-  .selectify-selected:after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    right: 6px;
-    margin-top: -3px;
-    height: 0;
-    width: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid #333333; }
+.selectify-option:hover {
+  background-color: #c2c2c2;
+  cursor: pointer; }
+
+.selectify-selected:after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  margin-top: -3px;
+  height: 0;
+  width: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #333333; }

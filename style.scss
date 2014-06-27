@@ -7,28 +7,26 @@
 }
 
 .selectify-select {
+    background-color: #fff;
     border: 1px solid;
+    list-style: none;
 }
-
-.selectify-option {
+.selectify-selected, .selectify-option{
     position: relative;
     padding: 2px 6px;
+    display: block;
+    &.hidden {
+        display: none;
+    }
+}
+.selectify-option {
     &:hover {
         background-color: #c2c2c2;
         cursor: pointer;
     }
-    &.hidden {
-        display: none;
-    }
 }
 
 .selectify-selected {
-    position: relative;
-    display: block;
-    padding: 2px 6px;
-    &.hidden {
-        display: none;
-    }
     &:after {
         content: '';
         display: inline-block;

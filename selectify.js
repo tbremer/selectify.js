@@ -1,114 +1,121 @@
 (function ( $ ) {
 
-    $.fn.selectify = function() {
-        return this.each(function() {
-            //__ TEMPLATES
-            var selectTemplate = '\
-            <div class="selectify-container">\
-                <ul class="selectify-select">\
-                    <li class="selectify-selected"></li>\
-                </ul>\
-            </div>\
-            ';
+  $.fn.selectify = function() {
+    return this.each(function() {
 
-            var optionTemplate = '\
-                <li class="selectify-option hidden"></li>\
-            ';
+      //__ TEMPLATES
+      var selectTemplate = '\
+      <div class="selectify-container">\
+          <ul class="selectify-select">\
+              <li class="selectify-selected"></li>\
+          </ul>\
+      </div>\
+      ';
 
-            //__ ELEMENT PLUGIN APPLIED TO
-            $base = $(this);
-            $base.hide();
+      var optionTemplate = '\
+          <li class="selectify-option hidden"></li>\
+      ';
 
-            //__ FIND CLOSEST SELECT
-            var $select  = ( $base.closest('select').length ? $base.closest('select') : $base.find('select') ),
-                $options = $select.children();
+      //__ ELEMENT PLUGIN APPLIED TO
+      $base = $(this);
+      $base.hide();
 
-            //__ APPEND TEMPLATE AND MAKE APPENDED ELEMENT A VARIABLE
-            $(selectTemplate).insertAfter($base);
-            var $selectify = $base.siblings('.selectify-container').find('.selectify-select');
+      //__ FIND CLOSEST SELECT
+      var $select  = ( $base.closest('select').length ? $base.closest('select') : $base.find('select') ),
+          $options = $select.children();
 
-
-            //__ REMOVE NON SELECTS SENT
-            if( !$base.is('select') ){ exit_no_stop($base); }
-
-            //__ LOOP THROUGH OPTIONS AND CLONE THEM TO THE LIST
-            $options.each(function(){
-                var $option = $(this),
-                    name = $.trim($option.text()),
-                    value = $option.val(),
-                    $clone = $(optionTemplate).clone(),
-                    $ul = $base.siblings().find('.selectify-select');
-
-                //__ MODIFY CLONE
-                $clone.attr('data-value', value).text(name);
-
-                //__ APPEND
-                $ul.append($clone);
-
-                //__ FIND SELECTED AND ADD CLASS
-                if( $option.is(':selected') ){
-                    $clone.addClass('selected');
-                    $ul.find('.selectify-selected').text(name);
-                };
-            });
-
-            //__ BIND EVENTS TO CUSTOM NAMESPACE
-            //__ UL OPEN
-            $selectify.on('click.selectify', {element: $selectify}, open_select);
-            //__ MOUSELEAVE UL CLOSE
-            $selectify.on('mouseleave.close-selectify', {element: $selectify}, close_select);
-            //__ LI CLICK EVENT
-            $selectify.find('.selectify-option').each(function(){
-                $(this).on('click.selectify-option', {element: $(this)}, change_selected);
-            });
-            //__ DOCUMENT BOUND CLOSE EVENT
-            $(document).on('selectify-option-clicked', {element: $selectify}, close_select);
+      //__ APPEND TEMPLATE AND MAKE APPENDED ELEMENT A VARIABLE
+      $(selectTemplate).insertAfter($base);
+      var $selectify = $base.siblings('.selectify-container').find('.selectify-select');
 
 
-        });
+      //__ REMOVE NON SELECTS SENT
+      if( !$base.is('select') ){ exit_no_stop($base); }
 
-        //__ EVENTS
-        function open_select(event){
-            event.stopPropagation();
-            var $base = event.data.element;
+      //__ LOOP THROUGH OPTIONS AND CLONE THEM TO THE LIST
+      $options.each(function(){
+          var $option = $(this),
+              name = $.trim($option.text()),
+              value = $option.val(),
+              $clone = $(optionTemplate).clone(),
+              $ul = $base.siblings().find('.selectify-select');
 
-            $base.children().removeClass('hidden');
-            $base.find('.selectify-selected').addClass('hidden');
-        }
+          //__ MODIFY CLONE
+          $clone.attr('data-value', value).text(name);
 
-        function change_selected(event){
-            event.stopPropagation();
-            var $base = event.data.element,
-                name = $base.text(),
-                value = $base.data('value'),
-                $select = $base.parentsUntil('.selectify-container').parent().siblings('select'),
-                $selectify_option = $base.siblings('.selectify-selected');
+          //__ APPEND
+          $ul.append($clone);
 
-            $select.children().removeAttr('selected');
-            $select.find('[value="'+value+'"]').attr('selected', true);
+          //__ FIND SELECTED AND ADD CLASS
+          if( $option.is(':selected') ){
+              $clone.addClass('selected');
+              $ul.find('.selectify-selected').text(name);
+          };
+      });
 
-            $selectify_option.text(name);
+      //__ BIND EVENTS TO CUSTOM NAMESPACE
+      //__ UL OPEN
+      $selectify.on('click.selectify', {selectify: $selectify, base: $base}, open_select);
+      //__ MOUSELEAVE UL CLOSE
+      $selectify.on('mouseleave.close-selectify', {selectify: $selectify, base: $base}, close_select);
+      //__ LI CLICK EVENT
+      $selectify.find('.selectify-option').each(function(){
+          $(this).on('click.selectify-option', {selectify: $(this), base: $base}, change_selected);
+      });
+      //__ DOCUMENT BOUND CLOSE EVENT
+      $(document).on('selectify-option-clicked', {selectify: $(this), base: $base}, close_select);
 
-            $(document).trigger('selectify-option-clicked');
-        };
 
-        function close_select(event){
-            event.stopPropagation();
-            var $base = (event.data.element.is('ul') ? event.data.element : event.data.elemet.parent());
+    });
 
-            $base.find('.selectify-option').addClass('hidden');
-            $base.find('.selectify-selected').removeClass('hidden');
+    //__ EVENTS
+    function open_select(event){
+      event.stopPropagation();
+      var $selectify = event.data.selectify,
+          $base = event.data.base;
 
-            $base.children().off('click.selectify-option, mouseleave.close-selectify');
-        }
+      $selectify.children().removeClass('hidden');
+      $selectify.find('.selectify-selected').addClass('hidden');
+      $base.trigger('selectify.focus');
+    }
 
-        function dbg(data){
-            console.info(data);
-        }
+    function change_selected(event){
+      event.stopPropagation();
+      var $selectify = event.data.selectify,
+          name = $selectify.text(),
+          value = $selectify.data('value'),
+          $select = $base,
+          $selectify_option = $selectify.siblings('.selectify-selected');
 
-        function exit_no_stop($base){
-            $base.siblings('.selectify-container').remove();
-        }
+      $select.children().removeAttr('selected');
+      $select.find('[value="'+value+'"]').attr('selected', true);
+
+      $selectify_option.text(name);
+
+      $(document).trigger('selectify-option-clicked');
+      $select.trigger('selectify.change');
     };
+
+    function close_select(event){
+      event.stopPropagation();
+      var $selectify = $(event.data.selectify),
+          $selectify = ($selectify.is('ul') ? $selectify : $selectify.parent()),
+          $base = $(event.data.base);
+
+      $selectify.find('.selectify-option').addClass('hidden');
+      $selectify.find('.selectify-selected').removeClass('hidden');
+      $selectify.children().off('click.selectify-option, mouseleave.close-selectify');
+
+      $base.trigger('selectify.blur');
+    }
+
+    function dbg(data){
+      console.info(data);
+    }
+
+    function exit_no_stop($base){
+      $base.siblings('.selectify-container').remove();
+    }
+  };
 
 }( jQuery ));
