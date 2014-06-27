@@ -108,14 +108,6 @@
 
       $base.trigger('selectify.blur');
     }
-
-    function dbg(data){
-      console.info(data);
-    }
-
-    function exit_no_stop($base){
-      $base.siblings('.selectify-container').remove();
-    }
   };
 
 }( jQuery ));
