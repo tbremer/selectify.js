@@ -4,16 +4,22 @@
   -moz-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
-  user-select: none; }
+  user-select: none;
+  min-height: 24px; }
 
 .selectify-select {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
+  margin: 0;
+  padding: 0;
   background-color: #fff;
   border: 1px solid;
   list-style: none; }
+
+.selectify-hidden {
+  display: none; }
 
 .selectify-selected, .selectify-option {
   position: relative;

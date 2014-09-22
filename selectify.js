@@ -18,7 +18,7 @@
 
       //__ ELEMENT PLUGIN APPLIED TO
       $base = $(this);
-      $base.hide();
+      $base.addClass('selectify-hidden');
 
       //__ FIND CLOSEST SELECT
       var $select  = ( $base.closest('select').length ? $base.closest('select') : $base.find('select') ),
