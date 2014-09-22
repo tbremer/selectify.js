@@ -1,4 +1,4 @@
-![version-1.0.0](http://img.shields.io/badge/Version-1.0.0-00cc00.svg?style=flat) &nbsp; ![copyleft](http://img.shields.io/badge/License-MIT-dd6ad5.svg?style=flat) &nbsp; ![download-1.944kb](http://img.shields.io/badge/Download-1.901kb-136ad5.svg?style=flat)
+![version-1.0.0](http://img.shields.io/badge/Version-1.0.0-00cc00.svg?style=flat) &nbsp; ![copyleft](http://img.shields.io/badge/License-MIT-dd6ad5.svg?style=flat) &nbsp; ![download-1.944kb](http://img.shields.io/badge/Download-1.944kb-136ad5.svg?style=flat)
 
 Selectify.js
 ============
