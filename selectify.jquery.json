@@ -1,0 +1,25 @@
+{
+	"name": "selectify",
+	"version": "1.0.1",
+	"title": "Selectify.js",
+	"author": {
+		"name": "Thomas Bremer",
+		"email": "tomabrem@gmail.com",
+		"url": "http://mise.io"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://github.com/tbremer/selectify.js/blob/master/LICENSE"
+		}
+		],
+		"dependencies": {
+			"jquery": ">=1.8.3"
+		},
+		"description": "A simple plugin that creates HTML5, CSS3 & Browser (down it IE8) compliant selectboxes.",
+		"homepage": "https://github.com/tbremer/selectify.js",
+		"keywords": ["forms", "selectboxes", "select", "css3", "html5", "compliant", "styled"],
+		"bugs": "https://github.com/tbremer/selectify.js/issues",
+		"demo": "http://mise.io/selectify.js/",
+		"maintainers": []
+}
