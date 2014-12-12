@@ -4,7 +4,7 @@
 
 			//__ TEMPLATES
 			var selectTemplate = '\
-				<div class="selectify-container" asg-selectbox>\
+				<div class="selectify-container">\
 					<ul class="selectify-select">\
 						<li class="selectify-selected"></li>\
 					</ul>\
