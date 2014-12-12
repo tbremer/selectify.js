@@ -2,7 +2,7 @@
 
 Selectify.js
 ============
-A simple jQuery plugin that creates HTML5, CSS3 & Browser (down it IE8) compliant selectboxes. Crafted for a need of simple reusable development processes by [tbremer @ MISE.io](//mise.io). Feel free to download [here](https://github.com/tbremer/selectify.js/archive/master.zip), or checkout the [demo](//mise.io/selectify.js)
+A simple jQuery plugin that creates HTML5, CSS3 & Browser (down it IE8) compliant selectboxes. Crafted for a need of simple reusable development processes by [tbremer @ MISE.io](http://mise.io). Feel free to download [here](https://github.com/tbremer/selectify.js/archive/master.zip), or checkout the [demo](http://mise.io/selectify.js)
 
 How to use
 -----------
